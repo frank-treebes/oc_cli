@@ -69,10 +69,13 @@ if (!defined('DIR_APPLICATION')) {
     oc_cli_output("OpenCart not installed.", 1);
 }
 
-// Startup
-require_once(DIR_SYSTEM . 'startup.php');
+// VirtualQMOD
+require_once('./vqmod/vqmod.php');
+VQMod::bootup();
+
+// VQMODDED Startup
+require_once(VQMod::modCheck(DIR_SYSTEM . 'startup.php'));
 
 $application_config = 'oc_cli';
 
-// Application
-require_once(DIR_SYSTEM . 'framework.php');
+start($application_config);
